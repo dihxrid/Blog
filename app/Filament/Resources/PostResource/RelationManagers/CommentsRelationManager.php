@@ -20,9 +20,11 @@ class CommentsRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\TextInput::make('comment')
+                    ->label(__('Comment'))
                     ->required()
                     ->maxLength(255),
                 Select::make('user_id')
+                    ->label(__('User'))
                     ->relationship('user', 'name')
                     ->searchable()
                     ->preload()
@@ -34,10 +36,14 @@ class CommentsRelationManager extends RelationManager
     {
         return $table
             ->recordTitleAttribute('comment')
+            
             ->columns([
-                Tables\Columns\TextColumn::make('comment'),
-                Tables\Columns\TextColumn::make('user.name'),
+                Tables\Columns\TextColumn::make('comment')
+                ->label(__('Comment')),
+                Tables\Columns\TextColumn::make('user.name')
+                ->label(__('User')),
             ])
+           
             ->filters([
                 //
             ])
@@ -50,4 +56,14 @@ class CommentsRelationManager extends RelationManager
             ])
             ->bulkActions([]);
     }
+
+    public static function getModelLabel(): string
+    {
+        return __('Comments');
+    }
+
+    // public static function getPluralModelLabel(): string
+    // {
+    //     return __('Comments');
+    // }
 }

@@ -3,9 +3,12 @@
     <div class="grid items-start grid-cols-12 gap-3 mt-5 article-body">
         <div class="flex items-center col-span-4 article-thumbnail">
             <a wire:navigate href="{{ route('posts.show', $post->slug) }}">
-                <img class="mx-auto mw-100 rounded-xl" src="{{ $post->getThumbnailUrl() }}" alt="thumbnail">
+                <div class="w-80 h-48">
+                    <img class="w-full h-full object-cover rounded-xl" src="{{ $post->getThumbnailUrl() }}" alt="thumbnail">
+                </div>
             </a>
         </div>
+        
         <div class="col-span-8">
             <div class="flex items-center py-1 text-sm article-meta">
                 <x-posts.author :author="$post->author" size="xs" />
